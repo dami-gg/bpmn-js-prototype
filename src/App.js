@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Viewer from "./components/Viewer/Viewer";
+import Viewer from "./components/viewer/Viewer";
 
 import "./App.css";
 
