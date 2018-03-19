@@ -1,0 +1,21 @@
+.viewer {
+  display: grid;
+  grid-template-rows: 50px 1fr;
+}
+
+.viewer__uploader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.viewer__container {
+  width: 96%;
+  height: 100%;
+  margin: 2%;
+  border: 1px solid black;
+}
+
+.bjs-powered-by {
+  display: none;
+}
