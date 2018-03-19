@@ -1,16 +1,16 @@
-.viewer {
+.modeler {
   display: grid;
   grid-template-rows: 50px 1fr;
   padding: 3%;
 }
 
-.viewer__uploader {
+.modeler__uploader {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.viewer__container {
+.modeler__container {
   width: 96%;
   height: 100%;
   margin: 2%;

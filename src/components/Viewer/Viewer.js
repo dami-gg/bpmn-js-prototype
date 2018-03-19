@@ -8,8 +8,8 @@ import { openDiagram } from "./viewer.helpers";
 import "./viewer.css";
 
 class Viewer extends PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.viewer = new BpmnViewer();
     this.containerId = "diagram-container--viewer";
 

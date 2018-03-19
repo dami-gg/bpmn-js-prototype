@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 
 import Viewer from "./components/viewer/Viewer";
+import Modeler from "./components/modeler/Modeler";
 
-import "./App.css";
+import "./app.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">BPMN modeler prototype</h1>
+      <div className="app">
+        <header className="app__header">
+          <h1 className="app__header__title">BPMN modeler prototype</h1>
         </header>
-        <Viewer />
+        <div className="app__sections">
+          <Viewer />
+          <Modeler />
+        </div>
       </div>
     );
   }

@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import "./file-uploader.css";
 
 class FileUploader extends PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.readFile = this.readFile.bind(this);
   }
 
