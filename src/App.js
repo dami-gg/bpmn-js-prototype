@@ -5,6 +5,8 @@ import Modeler from "./components/modeler/Modeler";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
+import "./vendor";
+
 import "./app.css";
 
 class App extends Component {
@@ -14,7 +16,7 @@ class App extends Component {
         <header className="app__header">
           <h1 className="app__header__title">BPMN workflows prototype</h1>
         </header>
-        
+
         <Tabs>
           <TabList>
             <Tab>Viewer</Tab>

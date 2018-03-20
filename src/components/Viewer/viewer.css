@@ -2,6 +2,7 @@
   display: grid;
   grid-template-rows: 50px 1fr;
   padding: 3%;
+  min-height: 600px;
 }
 
 .viewer__uploader {

@@ -2,6 +2,8 @@
   display: grid;
   grid-template-rows: 50px 1fr;
   padding: 3%;
+  height: 100%;
+  min-height: 600px;
 }
 
 .modeler__uploader {
@@ -11,10 +13,25 @@
 }
 
 .modeler__container {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
   width: 96%;
-  height: 100%;
   margin: 2%;
   border: 1px solid black;
+}
+
+.modeler__container__canvas {
+}
+
+.modeler__container__panel {
+  z-index: 10;
+  border-left: 1px solid #ccc;
+  overflow: auto;
+}
+
+.modeler__container__panel > .djs-properties-panel {
+  padding-bottom: 70px;
+  min-height: 100%;
 }
 
 .bjs-powered-by {
