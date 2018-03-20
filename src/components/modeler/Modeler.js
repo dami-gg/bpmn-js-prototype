@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import fileDownload from "js-file-download";
 
 import FileUploader from "../file-uploader/FileUploader";
 
@@ -18,6 +19,8 @@ class Modeler extends PureComponent {
     this.propertiesCanvasId = "properties-canvas";
 
     this.uploadDiagram = this.uploadDiagram.bind(this);
+    this.exportXml = this.exportXml.bind(this);
+    this.exportSvg = this.exportSvg.bind(this);
   }
 
   render() {
@@ -32,6 +35,18 @@ class Modeler extends PureComponent {
             id={this.propertiesCanvasId}
             className="modeler__container__panel"
           />
+        </div>
+        <div className="modeler__container__buttons">
+          <button
+            className="modeler__container__button modeler__container__button--xml"
+            onClick={this.exportXml}>
+            Export as XML
+          </button>
+          <button
+            className="modeler__container__button modeler__container__button--svg"
+            onClick={this.exportSvg}>
+            Export as SVG
+          </button>
         </div>
       </div>
     );
@@ -52,6 +67,18 @@ class Modeler extends PureComponent {
 
   uploadDiagram(diagramXml) {
     openDiagram(this.modeler, diagramXml);
+  }
+
+  exportXml() {
+    this.modeler.saveXML({ format: true }, (err, xml) =>
+      fileDownload(xml, "diagram.bpmn", "application/xml")
+    );
+  }
+
+  exportSvg() {
+    this.modeler.saveSVG((err, svg) =>
+      fileDownload(svg, "diagram.svg", "image/svg+xml")
+    );
   }
 }
 
