@@ -3,7 +3,7 @@ import BpmnViewer from "bpmn-js";
 
 import FileUploader from "../file-uploader/FileUploader";
 
-import { openDiagram } from "./viewer.helpers";
+import { openDiagram } from "../../helpers/bpmn.helpers";
 
 import "./viewer.css";
 
