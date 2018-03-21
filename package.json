@@ -1,7 +1,9 @@
 {
   "name": "bpmn-js-prototype",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
+  "license": "MIT",
+  "homepage": "https://dami-gg.github.io/bpmn-js-prototype",
   "dependencies": {
     "bpmn-js": "^0.27.6",
     "bpmn-js-properties-panel": "^0.22.1",
@@ -15,9 +17,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "gh-pages": "^1.1.0",
     "js-file-download": "^0.4.1",
     "prop-types": "^15.6.1"
   }
