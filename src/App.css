@@ -13,3 +13,8 @@
 .app__header__title {
   font-size: 1.5em;
 }
+
+.error-message {
+  color: red;
+  text-align: center;
+}

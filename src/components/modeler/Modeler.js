@@ -1,9 +1,11 @@
-import React, { PureComponent } from "react";
+import React, { Component, Fragment } from "react";
 import fileDownload from "js-file-download";
 
 import FileUploader from "../file-uploader/FileUploader";
 
 import { openDiagram } from "../../helpers/bpmn.helpers";
+
+import { NEW_DIAGRAM_XML } from "./modeler.constants";
 
 import "./modeler.css";
 
@@ -12,12 +14,19 @@ const propertiesPanelModule = require("bpmn-js-properties-panel");
 const propertiesPanelBpmnProvider = require("bpmn-js-properties-panel/lib/provider/bpmn");
 const camundaModdleDescriptor = require("camunda-bpmn-moddle/resources/camunda");
 
-class Modeler extends PureComponent {
+class Modeler extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loaded: false,
+      error: false
+    };
+
     this.canvasId = "modeler-canvas";
     this.propertiesCanvasId = "properties-canvas";
 
+    this.createNewDiagram = this.createNewDiagram.bind(this);
     this.uploadDiagram = this.uploadDiagram.bind(this);
     this.exportXml = this.exportXml.bind(this);
     this.exportSvg = this.exportSvg.bind(this);
@@ -26,24 +35,46 @@ class Modeler extends PureComponent {
   render() {
     return (
       <div className="modeler">
-        <div className="modeler__uploader">
-          <FileUploader onLoad={this.uploadDiagram} />
-        </div>
-        <div className="modeler__container">
-          <div id={this.canvasId} className="modeler__container__canvas" />
-          <div
-            id={this.propertiesCanvasId}
-            className="modeler__container__panel"
-          />
-        </div>
-        <div className="modeler__container__buttons">
+        <div className="modeler__buttons modeler__buttons--top">
           <button
-            className="modeler__container__button modeler__container__button--xml"
+            className="modeler__button modeler__button--create"
+            onClick={this.createNewDiagram}>
+            Create new diagram
+          </button>
+          <div className="modeler__button modeler__uploader">
+            <FileUploader onLoad={this.uploadDiagram} />
+          </div>
+        </div>
+
+        <div className={`modeler__container ${this.state.error ? "modeler__container--error" : ""}`}>
+          {this.state.error ? (
+            <h1 className="error-message">
+              Could not import the selected BPMN 2.0 diagram
+            </h1>
+          ) : (
+            <Fragment>
+              <div
+                id={this.canvasId}
+                className={`modeler__container__canvas${
+                  this.state.loaded ? "--loaded" : "--empty"
+                }`}
+              />
+              <div
+                id={this.propertiesCanvasId}
+                className="modeler__container__panel"
+              />
+            </Fragment>
+          )}
+        </div>
+
+        <div className="modeler__buttons modeler__buttons--bottom">
+          <button
+            className="modeler__button modeler__button--xml"
             onClick={this.exportXml}>
             Export as XML
           </button>
           <button
-            className="modeler__container__button modeler__container__button--svg"
+            className="modeler__button modeler__button--svg"
             onClick={this.exportSvg}>
             Export as SVG
           </button>
@@ -65,8 +96,22 @@ class Modeler extends PureComponent {
     });
   }
 
-  uploadDiagram(diagramXml) {
-    openDiagram(this.modeler, diagramXml);
+  async createNewDiagram() {
+    try {
+      await openDiagram(this.modeler, NEW_DIAGRAM_XML);
+      this.setState({ loaded: true });
+    } catch (err) {
+      this.setState({ error: true });
+    }
+  }
+
+  async uploadDiagram(diagramXml) {
+    try {
+      await openDiagram(this.modeler, diagramXml);
+      this.setState({ loaded: true });
+    } catch (err) {
+      this.setState({ error: true });
+    }
   }
 
   exportXml() {

@@ -20,7 +20,16 @@
   border: 1px solid black;
 }
 
-.modeler__container__canvas {
+.modeler__container--error {
+  grid-template-columns: 1fr;
+}
+
+.modeler__container__canvas--loaded {
+  display: block;
+}
+
+.modeler__container__canvas--empty {
+  display: none;
 }
 
 .modeler__container__panel {
